@@ -5,13 +5,14 @@ string charToBits(unsigned char);
 void printBits(unsigned);
 unsigned maskCharacters(unsigned char, unsigned char, unsigned char, unsigned char);
 void unmaskCharacters(unsigned);
-
+void printReverseBits(unsigned);
 
 int main()
 {
-    unsigned maskedNumber = maskCharacters('A', 'f','C','D');
-    unmaskCharacters(maskedNumber);
+    printReverseBits(41242);
 }
+
+
 
 
 /*
@@ -91,6 +92,25 @@ void printBits(unsigned value)
     {
         cout << (value & mask ? '1' : '0');
         value <<= 1;
+
+        if (i % 8 == 0)
+            cout << ' ';
+    }
+}
+
+
+/*
+    Prints the bits of an unsigned value in reversed order
+
+    @params value The value to be printed
+*/
+void printReverseBits(unsigned value)
+{
+    //Must start with 1 because of conditional
+    for (unsigned i = 1; i < 8 * sizeof(unsigned) + 1; i++)
+    {
+        cout << (value & 1 ? '1' : '0');
+        value >>= 1;
 
         if (i % 8 == 0)
             cout << ' ';
